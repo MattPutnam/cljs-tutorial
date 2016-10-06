@@ -1,5 +1,6 @@
 # cljs-tutorial
-This is a tutorial for React using the dmohs/cljs-react wrapper.
+
+This is a tutorial for React using the dmohs/cljs-react wrapper.  It assumes basic knowledge of ClojureScript and React.  If you're shaky on ClojureScript, see [here](https://github.com/MattPutnam/Cadenza-CLJS/blob/master/clojurescript_intro.md).  If you're unfamiliar with React, see [here](https://github.com/MattPutnam/Cadenza-CLJS/blob/master/react_intro.md).
 
 ## The project: Online Set game
 
