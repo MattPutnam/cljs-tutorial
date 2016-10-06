@@ -87,7 +87,7 @@ Then put this right after the `when` that shows the "confirm" button:
   [:div {:style {:textAlign "center" :color "red" :padding "0.7em 1em"}} error])
 ```
 
-Okay, now it shows up, but we need it to go away too.  It should go away whenever the player clicks a card, hits the "deal 3 cards" button, or restarts the game... basically, any change to `state` (except the one that adds the error message, of course).  Rather than stick this everywhere, we can use `component-did-update`.  Add this method:
+Okay, now it shows up, but we need it to go away too.  It should go away whenever the player clicks a card, hits the "deal 3 cards" button, or restarts the game... basically, any change to `state` (except the one that adds the error message, of course).  Rather than stick this everywhere, we can use `component-did-update`.  Add this method to `SetGame`:
 ```clojure
 :component-did-update
 (fn [{:keys [prev-state state]}]
@@ -95,7 +95,9 @@ Okay, now it shows up, but we need it to go away too.  It should go away wheneve
     (swap! state dissoc :error)))
 ```
 
-The only thing left is to detect the end of the game.  The game is over when there are no more cards in the deck, and there are no more sets among the cards.  Rather than make our `:check-set` method even bigger, let's also stick this in `:component-did-update`.  Let's add some comments too.
+As its name implies, `:component-did-update` is called any time `state` changes.  It's also called any time `:props` changes, which would happen if the parent component created this component and passed part of its state as a prop.  It receives two extra pieces of data, `:prev-state` and `:prev-props`, which are exactly what they sound like.  `prev-state` is not an atom since it's nonsensical to mutate it.  There's also `:component-will-receive-props` which is called right before the whole component rerenders due to a `:props` change.
+
+The only thing left is to detect the end of the game.  The game is over when there are no more cards in the deck, and there are no more sets among the cards.  Since there are multiple ways for the cards to change, let's also stick this in `:component-did-update`.  Let's add some comments too.
 
 ```clojure
 :component-did-update
