@@ -20,7 +20,7 @@ I like to design a GUI application by thinking about what I want the user to see
 There are several options for the card representation:
 
 1. Create a Card class
- * Pros - Type safety
+ * Pros - A small amount of type safety.  At the very least, if I try to treat something else as a Card I'll get an ugly error.
  * Cons - Very heavy, and we don't get to use the built-in functions very easily.  In CLJS we usually only create a class when we want to implement a protocol, for example when creating our own data structure implementation.
 2. Use a vector: [2 :red :solid :diamonds] for example
  * Pros - Very terse, automatically get a very readable string representation
